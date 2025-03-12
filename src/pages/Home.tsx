@@ -1,25 +1,29 @@
 import {
   DifferentiatorsIcon,
   DifferentiatorsItems,
+  DifferentiatorsSection,
   HomeContainer,
   Subtitle,
   Title,
+  TitleSection,
 } from "./HomeStyles";
 import { defaultTheme } from "../styles/themes/default";
 import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
+
+import HeroImage from "./image/HeroImage.png";
 
 export function Home() {
   return (
     <HomeContainer>
       <div>
-        <div>
+        <TitleSection>
           <Title>Encontre o café perfeito para qualquer hora do dia</Title>
           <Subtitle>
             Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
             hora
           </Subtitle>
-        </div>
-        <div>
+        </TitleSection>
+        <DifferentiatorsSection>
           <DifferentiatorsItems>
             <DifferentiatorsIcon color={defaultTheme["yellow-dark"]}>
               <ShoppingCart
@@ -34,7 +38,7 @@ export function Home() {
             <DifferentiatorsIcon color={defaultTheme["base-text"]}>
               <Package size={16} color={defaultTheme.white} weight="fill" />
             </DifferentiatorsIcon>
-            Embalagem mantém o café intacto
+            <p>Embalagem mantém o café intacto</p>
           </DifferentiatorsItems>
           <DifferentiatorsItems>
             <DifferentiatorsIcon color={defaultTheme["yellow"]}>
@@ -48,10 +52,10 @@ export function Home() {
             </DifferentiatorsIcon>
             <p>O café chega fresquinho até você</p>
           </DifferentiatorsItems>
-        </div>
+        </DifferentiatorsSection>
       </div>
       <div>
-        <img src={"HeroImage"} alt="" />
+        <img src={HeroImage} alt="" />
       </div>
     </HomeContainer>
   );

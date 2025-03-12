@@ -26,6 +26,7 @@ export const Title = styled.h1`
   font-size: 3rem;
   color: ${props => props.theme["base-title"]};
   line-height: 130%;
+  margin-bottom: 1rem;
 `
 
 export const Subtitle = styled.p`
@@ -43,7 +44,11 @@ export const DifferentiatorsItems = styled.div`
 
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
-  width: 400;
+  font-weight: 400;
+
+  & > p{
+    color: ${props => props.theme["base-text"]};
+  }
 `
 
 export const DifferentiatorsIcon = styled.div<DifferentiatorsItem>`
@@ -56,4 +61,16 @@ export const DifferentiatorsIcon = styled.div<DifferentiatorsItem>`
   width: 2rem;
   height: 2rem;
 
+`
+
+export const TitleSection = styled.div`
+  margin-bottom: 4.125rem;
+`
+
+export const DifferentiatorsSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 1.25rem;
+  grid-auto-flow: row;
 `
