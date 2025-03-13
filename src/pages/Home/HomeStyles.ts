@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import backgroundImage from "./image/Background.png";
+import { Plus } from "@phosphor-icons/react";
 
 interface DifferentiatorsItem {
   color: string;
@@ -95,7 +96,7 @@ export const MenuContainer = styled.div`
 
 export const MenuItem = styled.div`
   background-color: ${(props) => props.theme["base-card"]};
-  border-radius: 8px 30px;
+  border-radius: 6px 36px;
 
   max-width: 16rem;
 
@@ -113,19 +114,22 @@ export const MenuItem = styled.div`
 `;
 
 export const MenuItemDetails = styled.p`
-  background-color: ${(props) => props.theme["yellow-light"]};
-  color: ${(props) => props.theme["yellow-dark"]};
-
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 0.625rem;
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 1rem;
+  gap: 4px;
+  flex-wrap: wrap;
+`;
+
+export const ItemDetail = styled.p`
+  background-color: ${(props) => props.theme["yellow-light"]};
+  color: ${(props) => props.theme["yellow-dark"]};
 
   border-radius: 100px;
-  margin-bottom: 1rem;
   padding: 0.25rem 0.5rem;
 `;
 
@@ -143,9 +147,10 @@ export const MenuItemSubTitle = styled.h6`
   font-size: 0.875rem;
   color: ${(props) => props.theme["base-label"]};
   margin-bottom: 2.06rem;
+  text-align: center;
 `;
 
-export const MenuItemActions = styled.div`
+export const MenuItemBuyContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,10 +171,41 @@ export const MenuItemActions = styled.div`
   }
 `;
 
+export const MenuItemActions = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+export const MenuItemQuantity = styled.div`
+  background-color: ${(props) => props.theme["base-button"]};
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 6px;
+  gap: 4px;
+  padding: 0.5rem;
+
+  & > span {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: ${props => props.theme["base-text"]};
+  }
+`;
+
+export const PlusMiniusButton = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
 export const MenuItemActionShopping = styled.div`
   background-color: ${(props) => props.theme["purple-dark"]};
   padding: 0.5rem;
   border-radius: 8px;
   display: flex;
   justify-content: center;
+
+  cursor: pointer;
 `;

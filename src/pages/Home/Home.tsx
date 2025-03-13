@@ -3,15 +3,6 @@ import {
   DifferentiatorsItems,
   DifferentiatorsSection,
   HeroContainer,
-  MenuContainer,
-  MenuItem,
-  MenuItemActions,
-  MenuItemActionShopping,
-  MenuItemDetails,
-  MenuItemSubTitle,
-  MenuItemTitle,
-  MenuSection,
-  MenuTitle,
   Subtitle,
   Title,
   TitleSection,
@@ -21,12 +12,7 @@ import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 
 import HeroImage from "./image/HeroImage.png";
 
-import ExpressoTradicional from "./image/CoffeeImage/Expresso.png";
-import ExpressoAmericano from "./image/CoffeeImage/Americano.png";
-import ExpressoCremoso from "./image/CoffeeImage/Expresso.png";
-import ExpressoGelado from "./image/CoffeeImage/Expresso.png";
-import CafeComLeite from "./image/CoffeeImage/Expresso.png";
-import Latte from "./image/CoffeeImage/Expresso.png";
+import { MenuCoffee } from "./MenuCoffe";
 
 export function Home() {
   return (
@@ -75,122 +61,7 @@ export function Home() {
           <img src={HeroImage} alt="" />
         </div>
       </HeroContainer>
-      <MenuSection>
-        <MenuTitle>Nossos cafés</MenuTitle>
-        <MenuContainer>
-          <MenuItem>
-            <img src={ExpressoTradicional} alt="" />
-            <MenuItemDetails>Tradicional</MenuItemDetails>
-            <MenuItemTitle>Expresso Tradicional</MenuItemTitle>
-            <MenuItemSubTitle>
-              O tradicional café feito com água quente e grãos moídos
-            </MenuItemSubTitle>
-            <MenuItemActions>
-              <span>9,90</span>
-              <MenuItemActionShopping>
-                <ShoppingCart
-                  size={26}
-                  color={defaultTheme["white"]}
-                  weight="fill"
-                />
-              </MenuItemActionShopping>
-            </MenuItemActions>
-          </MenuItem>
-          <MenuItem>
-            <img src={ExpressoAmericano} alt="" />
-            <MenuItemDetails>Tradicional</MenuItemDetails>
-            <MenuItemTitle>Expresso Americano</MenuItemTitle>
-            <MenuItemSubTitle>
-              Expresso diluído, menos intenso que o tradicional
-            </MenuItemSubTitle>
-            <MenuItemActions>
-              <span>9,90</span>
-              <MenuItemActionShopping>
-                <ShoppingCart
-                  size={26}
-                  color={defaultTheme["white"]}
-                  weight="fill"
-                />
-              </MenuItemActionShopping>
-            </MenuItemActions>
-          </MenuItem>
-          <MenuItem>
-            <img src={ExpressoCremoso} alt="" />
-            <MenuItemDetails>Tradicional</MenuItemDetails>
-            <MenuItemTitle>Expresso Cremoso</MenuItemTitle>
-            <MenuItemSubTitle>
-              Café expresso tradicional com espuma cremosa
-            </MenuItemSubTitle>
-            <MenuItemActions>
-              <span>9,90</span>
-              <MenuItemActionShopping>
-                <ShoppingCart
-                  size={26}
-                  color={defaultTheme["white"]}
-                  weight="fill"
-                />
-              </MenuItemActionShopping>
-            </MenuItemActions>
-          </MenuItem>
-          <MenuItem>
-            <img src={ExpressoGelado} alt="" />
-            <MenuItemDetails>Tradicional</MenuItemDetails>
-            <MenuItemDetails>Gelado</MenuItemDetails>
-            <MenuItemTitle>Expresso Gelado</MenuItemTitle>
-            <MenuItemSubTitle>
-              Bebida preparada com café expresso e cubos de gelo
-            </MenuItemSubTitle>
-            <MenuItemActions>
-              <span>9,90</span>
-              <MenuItemActionShopping>
-                <ShoppingCart
-                  size={26}
-                  color={defaultTheme["white"]}
-                  weight="fill"
-                />
-              </MenuItemActionShopping>
-            </MenuItemActions>
-          </MenuItem>
-          <MenuItem>
-            <img src={CafeComLeite} alt="" />
-            <MenuItemDetails>Tradicional</MenuItemDetails>
-            <MenuItemDetails>Com leite</MenuItemDetails>
-            <MenuItemTitle>Café com leite</MenuItemTitle>
-            <MenuItemSubTitle>
-              Meio a meio de expresso tradicional com leite vaporizado
-            </MenuItemSubTitle>
-            <MenuItemActions>
-              <span>9,90</span>
-              <MenuItemActionShopping>
-                <ShoppingCart
-                  size={26}
-                  color={defaultTheme["white"]}
-                  weight="fill"
-                />
-              </MenuItemActionShopping>
-            </MenuItemActions>
-          </MenuItem>
-          <MenuItem>
-            <img src={Latte} alt="" />
-            <MenuItemDetails>Tradicional</MenuItemDetails>
-            <MenuItemDetails>Com leite</MenuItemDetails>
-            <MenuItemTitle>Latte</MenuItemTitle>
-            <MenuItemSubTitle>
-              Uma dose de café expresso com o dobro de leite e espuma cremosa
-            </MenuItemSubTitle>
-            <MenuItemActions>
-              <span>9,90</span>
-              <MenuItemActionShopping>
-                <ShoppingCart
-                  size={26}
-                  color={defaultTheme["white"]}
-                  weight="fill"
-                />
-              </MenuItemActionShopping>
-            </MenuItemActions>
-          </MenuItem>
-        </MenuContainer>
-      </MenuSection>
+      <MenuCoffee />
     </div>
   );
 }
