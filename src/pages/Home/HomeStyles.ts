@@ -89,9 +89,10 @@ export const MenuTitle = styled.div`
 `;
 
 export const MenuContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); 
   gap: 2.5rem 2rem;
-  flex-wrap: wrap;
+  justify-items: center;
 `;
 
 export const MenuItem = styled.div`
