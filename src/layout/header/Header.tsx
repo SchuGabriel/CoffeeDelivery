@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { MapIcon } from "./components/MapIcon";
 import { ShoppingCartIcon } from "./components/ShopCartIcon";
 import {
@@ -90,13 +91,17 @@ export function Header() {
           </svg>
         </div>
         <SectionContainer>
-          <LocalItem >
-            <MapIcon />
-            Porto Alegre, RS
-          </LocalItem>
-          <ShoppingItem>
-            <ShoppingCartIcon />
-          </ShoppingItem>
+          <NavLink to="/" style={{ textDecoration: "none"}}>
+            <LocalItem>
+              <MapIcon />
+              Porto Alegre, RS
+            </LocalItem>
+          </NavLink>
+          <NavLink to="/shopping/cart">
+            <ShoppingItem>
+              <ShoppingCartIcon />
+            </ShoppingItem>
+          </NavLink>
         </SectionContainer>
       </NavbarContainer>
     </HeaderContainer>

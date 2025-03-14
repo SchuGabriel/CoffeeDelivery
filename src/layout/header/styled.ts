@@ -33,7 +33,7 @@ export const SectionItem = styled.div`
 export const LocalItem = styled(SectionItem)`
   background-color: ${(props) => props.theme["purple-light"]};
   color: ${(props) => props.theme["purple-dark"]};
-  padding: 0.625rem 0.5rem;
+  padding: 0.5rem;
 `;
 
 export const ShoppingItem = styled(SectionItem)`
