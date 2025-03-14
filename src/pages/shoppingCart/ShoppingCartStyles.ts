@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+interface DefineFontProps {
+  size: number;
+  weight: number;
+  color: string;
+}
+
 export const PText = styled.span`
   font-family: "roboto", sans-serif;
   font-weight: 400;
@@ -92,7 +98,7 @@ export const PaymentMethodContainer = styled.div`
     gap: 0.75rem;
   }
 
-  & > div > span{
+  & > div > span {
     color: ${(props) => props.theme["base-text"]};
     font-family: "roboto", sans-serif;
     font-size: 0.75rem;
@@ -102,12 +108,81 @@ export const PaymentMethodContainer = styled.div`
 
 export const ProductsInfoContainer = styled.div``;
 
-export const CoffeeSelectionContainer = styled.div``;
+export const CoffeeSelectionContainer = styled.div`
+  background-color: ${(props) => props.theme["base-card"]};
+  border-radius: 6px 44px;
+  padding: 2.5rem;
+`;
+
+export const CoffeeSelectioned = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${(props) => props.theme["base-button"]};
+
+  img {
+    width: 4rem;
+  }
+
+  & + & {
+    margin-top: 1.5rem;
+  }
+
+  p {
+    color: ${(props) => props.theme["base-text"]};
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`;
+
+export const TotalSummary = styled.div`
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  font-family: "roboto", sans-serif;
+  font-weight: 400;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  p :not(.PriceContainer) {
+    color: ${(props) => props.theme["base-subtitle"]};
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+`;
+
+export const TotalSummaryPrice = styled.span`
+  font-size: 1rem;
+  color: ${(props) => props.theme["base-text"]};
+`;
 
 export const TitleContainerText = styled.h6`
   font-family: "baloo 2", sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
   color: ${(props) => props.theme["base-subtitle"]};
+  line-height: 130%;
+`;
+
+export const FontDefine = styled.p<DefineFontProps>`
+  font-family: "roboto", sans-serif;
+  font-weight: ${(props) => props.weight};
+  font-size: ${(props) => props.size}rem;
+  color: ${(props) => props.color};
   line-height: 130%;
 `;

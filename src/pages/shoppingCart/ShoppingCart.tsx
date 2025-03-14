@@ -19,8 +19,14 @@ import {
   TitleContainerText,
   SpanText,
   PText,
-} from "./ShoppingCart";
+  CoffeeSelectioned,
+  TotalSummary,
+  TotalSummaryPrice,
+  FontDefine,
+} from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
+
+import cafe from "../../../public/CoffeeImage/Capuccino.png";
 
 export function ShoppingCart() {
   return (
@@ -86,7 +92,78 @@ export function ShoppingCart() {
       </OrderInfoContainer>
       <ProductsInfoContainer>
         <TitleContainerText>Cafés Selecionados</TitleContainerText>
-        <CoffeeSelectionContainer></CoffeeSelectionContainer>
+        <CoffeeSelectionContainer>
+          <CoffeeSelectioned>
+            <div>
+              <img src={cafe} />
+              <div>
+                <span>Capuccino</span>
+                <span>Deletar</span>
+              </div>
+            </div>
+            <FontDefine size={1} weight={700} color={defaultTheme["base-text"]}>
+              {new Intl.NumberFormat("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+                style: "currency",
+                currency: "BRL",
+              }).format(9.9)}
+            </FontDefine>
+          </CoffeeSelectioned>
+          <TotalSummary>
+            <div>
+              <span>Total de itens</span>
+              <FontDefine
+                size={1}
+                weight={400}
+                color={defaultTheme["base-text"]}
+              >
+                {new Intl.NumberFormat("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                  style: "currency",
+                  currency: "BRL",
+                }).format(19.9)}
+              </FontDefine>
+            </div>
+            <div>
+              <span>Entrega</span>
+              <FontDefine
+                size={1}
+                weight={400}
+                color={defaultTheme["base-text"]}
+              >
+                {new Intl.NumberFormat("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                  style: "currency",
+                  currency: "BRL",
+                }).format(3.5)}
+              </FontDefine>
+            </div>
+            <div>
+              <FontDefine
+                size={1.25}
+                weight={700}
+                color={defaultTheme["base-subtitle"]}
+              >
+                Total
+              </FontDefine>
+              <FontDefine
+                size={1.25}
+                weight={700}
+                color={defaultTheme["base-subtitle"]}
+              >
+                {new Intl.NumberFormat("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                  style: "currency",
+                  currency: "BRL",
+                }).format(33.5)}
+              </FontDefine>
+            </div>
+          </TotalSummary>
+        </CoffeeSelectionContainer>
       </ProductsInfoContainer>
     </CartContainer>
   );
