@@ -24,12 +24,14 @@ export const SpanText = styled.span`
 
 export const CartContainer = styled.div`
   padding: 2.5rem 10rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 `;
 
-export const OrderInfoContainer = styled.div``;
+export const OrderInfoContainer = styled.div`
+  width: 60%;
+`;
 
 export const AddressAndPaymentContainer = styled.div``;
 
@@ -106,7 +108,9 @@ export const PaymentMethodContainer = styled.div`
   }
 `;
 
-export const ProductsInfoContainer = styled.div``;
+export const ProductsInfoContainer = styled.div`
+  flex: 1;
+`;
 
 export const CoffeeSelectionContainer = styled.div`
   background-color: ${(props) => props.theme["base-card"]};
@@ -128,22 +132,61 @@ export const CoffeeSelectioned = styled.div`
   & + & {
     margin-top: 1.5rem;
   }
+`;
+
+export const CoffeeInfo = styled.div`
+  display: flex;
+  gap: 1.25rem;
+`;
+
+export const CoffeeDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: "roboto", sans-serif;
+  font-weight: 400;
+  gap: 0.5rem;
 
   p {
-    color: ${(props) => props.theme["base-text"]};
+    color: ${(props) => props.theme["base-subtitle"]};
+    font-size: 1rem;
   }
+`;
 
-  div {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-  }
+export const CoffeeActions = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
 
-  div > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  * {
+    cursor: pointer;
   }
+`;
+
+export const CoffeeActionQuantity = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 6px;
+  background-color: ${(props) => props.theme["base-button"]};
+  padding: 0.343rem 0.5rem;
+
+  font-size: 1rem;
+  color: ${(props) => props.theme["base-title"]};
+  line-height: 130%;
+`;
+
+export const RemoveButton = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${(props) => props.theme["base-button"]};
+  border-radius: 6px;
+  padding: 0.5rem;
+  gap: 0.25rem;
+
+  color: ${(props) => props.theme["base-text"]};
+  font-size: 0.75rem;
+  line-height: 160%;
 `;
 
 export const TotalSummary = styled.div`
@@ -162,6 +205,20 @@ export const TotalSummary = styled.div`
   p :not(.PriceContainer) {
     color: ${(props) => props.theme["base-subtitle"]};
     font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  button {
+    width: 100%;
+    background-color: ${(props) => props.theme["yellow"]};
+    color: ${(props) => props.theme["white"]};
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+
+    font-size: 0.85rem;
     font-weight: 700;
   }
 `;

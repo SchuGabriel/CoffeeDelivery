@@ -3,7 +3,10 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
+  Minus,
   Money,
+  Plus,
+  Trash,
 } from "@phosphor-icons/react";
 import {
   AddressAndPaymentContainer,
@@ -23,10 +26,15 @@ import {
   TotalSummary,
   TotalSummaryPrice,
   FontDefine,
+  CoffeeActions,
+  CoffeeActionQuantity,
+  CoffeeDetailsContainer,
+  RemoveButton,
+  CoffeeInfo,
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 
-import cafe from "../../../public/CoffeeImage/Capuccino.png";
+import cafe from "/CoffeeImage/Capuccino.png";
 
 export function ShoppingCart() {
   return (
@@ -94,13 +102,23 @@ export function ShoppingCart() {
         <TitleContainerText>Cafés Selecionados</TitleContainerText>
         <CoffeeSelectionContainer>
           <CoffeeSelectioned>
-            <div>
+            <CoffeeInfo>
               <img src={cafe} />
-              <div>
-                <span>Capuccino</span>
-                <span>Deletar</span>
-              </div>
-            </div>
+              <CoffeeDetailsContainer>
+                <p>Expresso Tradicional</p>
+                <CoffeeActions>
+                  <CoffeeActionQuantity>
+                    <Plus size={16} color={defaultTheme["purple"]} />
+                    <span>1</span>
+                    <Minus size={16} color={defaultTheme["purple"]} />
+                  </CoffeeActionQuantity>
+                  <RemoveButton>
+                    <Trash size={16} color={defaultTheme["purple"]} />
+                    <span>REMOVER</span>
+                  </RemoveButton>
+                </CoffeeActions>
+              </CoffeeDetailsContainer>
+            </CoffeeInfo>
             <FontDefine size={1} weight={700} color={defaultTheme["base-text"]}>
               {new Intl.NumberFormat("pt-BR", {
                 minimumFractionDigits: 2,
@@ -161,6 +179,9 @@ export function ShoppingCart() {
                   currency: "BRL",
                 }).format(33.5)}
               </FontDefine>
+            </div>
+            <div>
+              <button>CONFIRMAR PEDIDO</button>
             </div>
           </TotalSummary>
         </CoffeeSelectionContainer>
