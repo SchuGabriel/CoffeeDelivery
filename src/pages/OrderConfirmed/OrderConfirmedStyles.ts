@@ -18,7 +18,7 @@ export const OrderHeader = styled.div`
     font-family: "baloo 2", serif;
     font-size: 2rem;
     font-weight: 800;
-    color: ${(props) => props.theme["yellow"]};
+    color: ${(props) => props.theme["yellow-dark"]};
     margin-bottom: 0.25rem;
   }
 
@@ -61,6 +61,7 @@ export const InfoContainer = styled.div`
 
 export const InfoItem = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.75rem;
 `;
 
@@ -70,10 +71,20 @@ export const IconContainer = styled.div<IconProps>`
   display: flex;
   justify-content: center;
   padding: 0.5rem;
+  height: 2rem;
+  width: 2rem;
 `
 
 export const InfoText = styled.div`
-  /* Estiliza os ícones ao lado das informações */
+  font-family: "roboto", sans-serif;
+  line-height: 130%;
+  font-size: 1rem;
+  font-weight: 400;
+  color: ${props => props.theme["base-text"]};
+
+  span{
+    font-weight: 700;
+  }
 `;
 
 export const OrderImage = styled.div`
