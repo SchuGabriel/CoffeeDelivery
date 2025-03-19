@@ -31,6 +31,10 @@ import {
   CoffeeDetailsContainer,
   RemoveButton,
   CoffeeInfo,
+  FirstInput,
+  SecondInput,
+  ThirdInput,
+  FourthInput,
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 
@@ -53,21 +57,21 @@ export function ShoppingCart() {
               </DeliveryInfoText>
             </DeliveryInfoHeader>
             <DeliveryInfoAddress>
-              <div>
+              <FirstInput>
                 <input type="text" placeholder="CEP" />
-              </div>
-              <div>
+              </FirstInput>
+              <SecondInput>
                 <input type="text" placeholder="Rua" />
-              </div>
-              <div>
+              </SecondInput>
+              <ThirdInput>
                 <input type="text" placeholder="Número" />
                 <input type="text" placeholder="Complemento" />
-              </div>
-              <div>
+              </ThirdInput>
+              <FourthInput>
                 <input type="text" placeholder="Bairro" />
                 <input type="text" placeholder="Cidade" />
                 <input type="text" placeholder="UF" />
-              </div>
+              </FourthInput>
             </DeliveryInfoAddress>
           </DeliveryContainer>
           <DeliveryContainer>

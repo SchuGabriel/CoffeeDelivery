@@ -31,6 +31,10 @@ export const CartContainer = styled.div`
 
 export const OrderInfoContainer = styled.div`
   width: 60%;
+
+  @media screen {
+    
+  }
 `;
 
 export const AddressAndPaymentContainer = styled.div``;
@@ -65,6 +69,7 @@ export const DeliveryInfoAddress = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 
   & > div {
     display: flex;
@@ -82,6 +87,33 @@ export const DeliveryInfoAddress = styled.div`
     font-weight: 400;
     line-height: 130%;
     font-size: 0.85rem;
+  }
+`;
+
+export const FirstInput = styled.div``;
+
+export const SecondInput = styled.div`
+  input {
+    flex: 1;
+  }
+`;
+
+export const ThirdInput = styled.div`
+  flex-wrap: wrap;
+  :nth-child(2) {
+    flex: 1;
+  }
+`;
+
+export const FourthInput = styled.div`
+    flex-wrap: wrap;
+  :nth-child(2) {
+    flex: 1;
+  }
+
+  :nth-child(3) {
+    width: 4rem;
+    flex: 0;
   }
 `;
 
