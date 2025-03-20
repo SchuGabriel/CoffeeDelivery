@@ -13,8 +13,48 @@ import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 import HeroImage from "./image/HeroImage.png";
 
 import { MenuCoffee } from "./MenuCoffe";
+import { useEffect, useState } from "react";
+
+export interface CoffeeProps {
+  ItemId: number;
+  ItemDetails: string[];
+  ItemTitle: string;
+  ItemSubTitle: string;
+  ItemPrice: string;
+  Image: string;
+}
+
+export interface CoffeeCartProps {
+  coffee: CoffeeProps;
+  quantity: number;
+}
+
+export interface MenuCoffeProps {
+  onAddCart: ({ coffee, quantity }: CoffeeCartProps) => void;
+}
 
 export function Home() {
+  const [coffeeCart, setCoffeeCart] = useState<CoffeeCartProps[]>([]);
+
+  function HandleAddCart({ coffee, quantity }: CoffeeCartProps) {
+    setCoffeeCart((prevCart) => {
+      return prevCart
+        .map((item) =>
+          item.coffee.ItemId === coffee.ItemId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+        .concat(
+          prevCart.find((item) => item.coffee.ItemId === coffee.ItemId)
+            ? []
+            : [{ coffee, quantity }]
+        );
+    });
+  }
+
+  useEffect(() => {
+  }, [coffeeCart]);
+
   return (
     <div>
       <HeroContainer>
@@ -61,7 +101,7 @@ export function Home() {
           <img src={HeroImage} alt="" />
         </div>
       </HeroContainer>
-      <MenuCoffee />
+      <MenuCoffee onAddCart={HandleAddCart} />
     </div>
   );
 }

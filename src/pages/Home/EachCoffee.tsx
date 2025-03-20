@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import {
   ItemDetail,
@@ -12,19 +13,26 @@ import {
   PlusMiniusButton,
 } from "./HomeStyles";
 import { defaultTheme } from "../../styles/themes/default";
+import { CoffeeCartProps, CoffeeProps, MenuCoffeProps } from "./Home";
 
-interface MenuCoffeProps {
-  coffee: {
-    ItemId: number;
-    ItemDetails: string[];
-    ItemTitle: string;
-    ItemSubTitle: string;
-    ItemPrice: string;
-    Image: string,
-  };
+export interface EachCoffeeProps {
+  coffee: CoffeeProps;
+  onAddCart: ({ coffee, quantity }: CoffeeCartProps) => void;
 }
 
-export function EachCoffee({ coffee }: MenuCoffeProps) {
+export function EachCoffee({ coffee, onAddCart }: EachCoffeeProps) {
+  const [quantity, setQuantity] = useState(1);
+
+  function increaseQuantity() {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  }
+
+  function decreaseQuantity() {
+    setQuantity((prevQuantity) => prevQuantity - 1);
+  }
+
+  useEffect(() => {}, [quantity]);
+
   return (
     <MenuItem>
       <img src={coffee.Image} />
@@ -39,15 +47,15 @@ export function EachCoffee({ coffee }: MenuCoffeProps) {
         <span>{coffee.ItemPrice}</span>
         <MenuItemActions>
           <MenuItemQuantity>
-            <PlusMiniusButton>
+            <PlusMiniusButton onClick={decreaseQuantity}>
               <Minus size={14} color={defaultTheme.purple} weight="bold" />
             </PlusMiniusButton>
-            <span>1</span>
-            <PlusMiniusButton>
+            <span>{quantity}</span>
+            <PlusMiniusButton onClick={increaseQuantity}>
               <Plus size={14} color={defaultTheme.purple} weight="bold" />
             </PlusMiniusButton>
           </MenuItemQuantity>
-          <MenuItemActionShopping>
+          <MenuItemActionShopping onClick={() => onAddCart({coffee, quantity})}>
             <ShoppingCart
               size={26}
               color={defaultTheme["white"]}
