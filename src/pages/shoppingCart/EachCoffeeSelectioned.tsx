@@ -19,7 +19,6 @@ export function EachCoffeeSelectioned() {
   }
 
   function increaseQuantity(idCoffee: number) {
-    console.log("Aumentando", idCoffee);
     setCartData(
       cartData.map((coffee) =>
         coffee.id === idCoffee
@@ -30,7 +29,6 @@ export function EachCoffeeSelectioned() {
   }
 
   function decreaseQuantity(idCoffee: number) {
-    console.log("Descendo", idCoffee);
     setCartData(
       cartData.map((coffee) =>
         coffee.id === idCoffee
@@ -50,16 +48,16 @@ export function EachCoffeeSelectioned() {
               <p>{coffee.name}</p>
               <CoffeeActions>
                 <CoffeeActionQuantity>
-                  <Plus
-                    size={16}
-                    color={defaultTheme["purple"]}
-                    onClick={() => increaseQuantity(coffee.id)}
-                  />
-                  <span>{coffee.quantity}</span>
                   <Minus
                     size={16}
                     color={defaultTheme["purple"]}
                     onClick={() => decreaseQuantity(coffee.id)}
+                  />
+                  <span>{coffee.quantity}</span>
+                  <Plus
+                    size={16}
+                    color={defaultTheme["purple"]}
+                    onClick={() => increaseQuantity(coffee.id)}
                   />
                 </CoffeeActionQuantity>
                 <RemoveButton onClick={() => handleRemoveCoffee(coffee.id)}>

@@ -25,10 +25,12 @@ import {
   SecondInput,
   ThirdInput,
   FourthInput,
+  EachCoffeeSelectionedContainer,
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 
 import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
+import { TotalSumarryCart } from "./TotalSumarryCart";
 
 export function ShoppingCart() {
   return (
@@ -95,63 +97,10 @@ export function ShoppingCart() {
       <ProductsInfoContainer>
         <TitleContainerText>Cafés Selecionados</TitleContainerText>
         <CoffeeSelectionContainer>
-          <EachCoffeeSelectioned />
-          <TotalSummary>
-            <div>
-              <span>Total de itens</span>
-              <FontDefine
-                size={1}
-                weight={400}
-                color={defaultTheme["base-text"]}
-              >
-                {new Intl.NumberFormat("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                  style: "currency",
-                  currency: "BRL",
-                }).format(19.9)}
-              </FontDefine>
-            </div>
-            <div>
-              <span>Entrega</span>
-              <FontDefine
-                size={1}
-                weight={400}
-                color={defaultTheme["base-text"]}
-              >
-                {new Intl.NumberFormat("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                  style: "currency",
-                  currency: "BRL",
-                }).format(3.5)}
-              </FontDefine>
-            </div>
-            <div>
-              <FontDefine
-                size={1.25}
-                weight={700}
-                color={defaultTheme["base-subtitle"]}
-              >
-                Total
-              </FontDefine>
-              <FontDefine
-                size={1.25}
-                weight={700}
-                color={defaultTheme["base-subtitle"]}
-              >
-                {new Intl.NumberFormat("pt-BR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                  style: "currency",
-                  currency: "BRL",
-                }).format(33.5)}
-              </FontDefine>
-            </div>
-            <div>
-              <button>CONFIRMAR PEDIDO</button>
-            </div>
-          </TotalSummary>
+          <EachCoffeeSelectionedContainer>
+            <EachCoffeeSelectioned />
+          </EachCoffeeSelectionedContainer>
+          <TotalSumarryCart />
         </CoffeeSelectionContainer>
       </ProductsInfoContainer>
     </CartContainer>

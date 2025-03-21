@@ -31,10 +31,6 @@ export const CartContainer = styled.div`
 
 export const OrderInfoContainer = styled.div`
   width: 60%;
-
-  @media screen {
-    
-  }
 `;
 
 export const AddressAndPaymentContainer = styled.div``;
@@ -106,7 +102,7 @@ export const ThirdInput = styled.div`
 `;
 
 export const FourthInput = styled.div`
-    flex-wrap: wrap;
+  flex-wrap: wrap;
   :nth-child(2) {
     flex: 1;
   }
@@ -149,6 +145,12 @@ export const CoffeeSelectionContainer = styled.div`
   border-radius: 6px 44px;
   padding: 2.5rem;
 `;
+
+export const EachCoffeeSelectionedContainer = styled.div`
+  max-height: 50vh;
+  overflow-y: auto;
+  scroll-margin-left: 20px;
+`
 
 export const CoffeeSelectioned = styled.div`
   display: flex;
@@ -207,7 +209,7 @@ export const CoffeeActionQuantity = styled.div`
   color: ${(props) => props.theme["base-title"]};
   line-height: 130%;
 
-  span{
+  span {
     cursor: auto;
   }
 `;
