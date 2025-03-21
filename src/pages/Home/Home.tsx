@@ -14,13 +14,14 @@ import HeroImage from "./image/HeroImage.png";
 
 import { MenuCoffee } from "./MenuCoffe";
 import { useEffect, useState } from "react";
+import { CartItem, useCart } from "../../components/context/CartContext";
 
 export interface CoffeeProps {
   ItemId: number;
   ItemDetails: string[];
   ItemTitle: string;
   ItemSubTitle: string;
-  ItemPrice: string;
+  ItemPrice: number;
   Image: string;
 }
 
@@ -34,26 +35,30 @@ export interface MenuCoffeProps {
 }
 
 export function Home() {
-  const [coffeeCart, setCoffeeCart] = useState<CoffeeCartProps[]>([]);
+  const { setCartData } = useCart();
 
   function HandleAddCart({ coffee, quantity }: CoffeeCartProps) {
-    setCoffeeCart((prevCart) => {
+    setCartData((prevCart) => {
+      const newCoffee: CartItem = {
+        id: coffee.ItemId,
+        name: coffee.ItemTitle,
+        price: coffee.ItemPrice,
+        image: coffee.Image,
+        quantity: quantity,
+      };
       return prevCart
         .map((item) =>
-          item.coffee.ItemId === coffee.ItemId
+          item.id === coffee.ItemId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         )
         .concat(
-          prevCart.find((item) => item.coffee.ItemId === coffee.ItemId)
+          prevCart.find((item) => item.id === coffee.ItemId)
             ? []
-            : [{ coffee, quantity }]
+            : [newCoffee]
         );
     });
   }
-
-  useEffect(() => {
-  }, [coffeeCart]);
 
   return (
     <div>

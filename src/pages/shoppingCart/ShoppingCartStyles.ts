@@ -206,6 +206,10 @@ export const CoffeeActionQuantity = styled.div`
   font-size: 1rem;
   color: ${(props) => props.theme["base-title"]};
   line-height: 130%;
+
+  span{
+    cursor: auto;
+  }
 `;
 
 export const RemoveButton = styled.div`

@@ -3,10 +3,7 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Minus,
   Money,
-  Plus,
-  Trash,
 } from "@phosphor-icons/react";
 import {
   AddressAndPaymentContainer,
@@ -22,15 +19,8 @@ import {
   TitleContainerText,
   SpanText,
   PText,
-  CoffeeSelectioned,
   TotalSummary,
-  TotalSummaryPrice,
   FontDefine,
-  CoffeeActions,
-  CoffeeActionQuantity,
-  CoffeeDetailsContainer,
-  RemoveButton,
-  CoffeeInfo,
   FirstInput,
   SecondInput,
   ThirdInput,
@@ -38,7 +28,7 @@ import {
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 
-import cafe from "/CoffeeImage/Capuccino.png";
+import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
 
 export function ShoppingCart() {
   return (
@@ -105,33 +95,7 @@ export function ShoppingCart() {
       <ProductsInfoContainer>
         <TitleContainerText>Cafés Selecionados</TitleContainerText>
         <CoffeeSelectionContainer>
-          <CoffeeSelectioned>
-            <CoffeeInfo>
-              <img src={cafe} />
-              <CoffeeDetailsContainer>
-                <p>Expresso Tradicional</p>
-                <CoffeeActions>
-                  <CoffeeActionQuantity>
-                    <Plus size={16} color={defaultTheme["purple"]} />
-                    <span>1</span>
-                    <Minus size={16} color={defaultTheme["purple"]} />
-                  </CoffeeActionQuantity>
-                  <RemoveButton>
-                    <Trash size={16} color={defaultTheme["purple"]} />
-                    <span>REMOVER</span>
-                  </RemoveButton>
-                </CoffeeActions>
-              </CoffeeDetailsContainer>
-            </CoffeeInfo>
-            <FontDefine size={1} weight={700} color={defaultTheme["base-text"]}>
-              {new Intl.NumberFormat("pt-BR", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-                style: "currency",
-                currency: "BRL",
-              }).format(9.9)}
-            </FontDefine>
-          </CoffeeSelectioned>
+          <EachCoffeeSelectioned />
           <TotalSummary>
             <div>
               <span>Total de itens</span>
