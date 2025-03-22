@@ -39,4 +39,21 @@ export const LocalItem = styled(SectionItem)`
 export const ShoppingItem = styled(SectionItem)`
   background-color: ${(props) => props.theme["yellow-light"]};
   padding: 0.5rem;
+  position: relative;
+`;
+
+export const LengthBadge = styled.span`
+  position: absolute;
+  top: -0.45rem;
+  right: -0.45rem;
+  background-color: ${(props) => props.theme["yellow-dark"]};
+  color: ${(props) => props.theme["white"]};
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
