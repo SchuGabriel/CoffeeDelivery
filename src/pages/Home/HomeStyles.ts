@@ -199,6 +199,11 @@ export const PlusMiniusButton = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: ${props => props.theme["purple"]};
+
+  svg:hover{
+    color: ${props => props.theme["purple-dark"]};
+  }
 `;
 
 export const MenuItemActionShopping = styled.div`
@@ -209,4 +214,8 @@ export const MenuItemActionShopping = styled.div`
   justify-content: center;
 
   cursor: pointer;
+
+  &:hover{
+    background-color: ${(props) => props.theme["purple"]};
+  }
 `;

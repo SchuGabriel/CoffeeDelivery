@@ -50,18 +50,16 @@ export function EachCoffeeSelectioned() {
                 <CoffeeActionQuantity>
                   <Minus
                     size={16}
-                    color={defaultTheme["purple"]}
                     onClick={() => decreaseQuantity(coffee.id)}
                   />
                   <span>{coffee.quantity}</span>
                   <Plus
                     size={16}
-                    color={defaultTheme["purple"]}
                     onClick={() => increaseQuantity(coffee.id)}
                   />
                 </CoffeeActionQuantity>
                 <RemoveButton onClick={() => handleRemoveCoffee(coffee.id)}>
-                  <Trash size={16} color={defaultTheme["purple"]} />
+                  <Trash size={16}  />
                   <span>REMOVER</span>
                 </RemoveButton>
               </CoffeeActions>

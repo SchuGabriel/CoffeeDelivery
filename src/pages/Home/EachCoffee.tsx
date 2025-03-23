@@ -51,11 +51,11 @@ export function EachCoffee({ coffee, onAddCart }: EachCoffeeProps) {
         <MenuItemActions>
           <MenuItemQuantity>
             <PlusMiniusButton onClick={decreaseQuantity}>
-              <Minus size={14} color={defaultTheme.purple} weight="bold" />
+              <Minus size={14} weight="bold" />
             </PlusMiniusButton>
             <span>{quantity}</span>
             <PlusMiniusButton onClick={increaseQuantity}>
-              <Plus size={14} color={defaultTheme.purple} weight="bold" />
+              <Plus size={14} weight="bold" />
             </PlusMiniusButton>
           </MenuItemQuantity>
           <MenuItemActionShopping onClick={() => onAddCart({coffee, quantity})}>

@@ -118,6 +118,10 @@ export const PaymentMethodContainer = styled.div`
   gap: 0.75rem;
   justify-content: center;
 
+  :hover{
+    background-color: ${props => props.theme["base-hover"]};
+  }
+  
   & > div {
     background-color: ${(props) => props.theme["base-button"]};
     border-radius: 6px;
@@ -126,8 +130,10 @@ export const PaymentMethodContainer = styled.div`
     align-items: center;
     width: calc(100% / 3);
     gap: 0.75rem;
-  }
+    cursor: pointer;
 
+  }
+  
   & > div > span {
     color: ${(props) => props.theme["base-text"]};
     font-family: "roboto", sans-serif;
@@ -212,6 +218,14 @@ export const CoffeeActionQuantity = styled.div`
   span {
     cursor: auto;
   }
+
+  svg{
+    color: ${props => props.theme["purple"]};
+  }
+
+  svg:hover{
+    color: ${props => props.theme["purple-dark"]};
+  }
 `;
 
 export const RemoveButton = styled.div`
@@ -225,6 +239,19 @@ export const RemoveButton = styled.div`
   color: ${(props) => props.theme["base-text"]};
   font-size: 0.75rem;
   line-height: 160%;
+
+  svg{
+    color: ${(props) => props.theme["purple"]};
+  }
+
+  &:hover{
+    background-color: ${(props) => props.theme["base-hover"]};
+    color: ${(props) => props.theme["base-subtitle"]};
+    
+    svg{
+      color: ${(props) => props.theme["purple-dark"]};
+    }
+  }
 `;
 
 export const TotalSummary = styled.div`
@@ -258,6 +285,10 @@ export const TotalSummary = styled.div`
 
     font-size: 0.85rem;
     font-weight: 700;
+
+    &:hover{
+      background-color: ${(props) => props.theme["yellow-dark"]};
+    }
   }
 `;
 
