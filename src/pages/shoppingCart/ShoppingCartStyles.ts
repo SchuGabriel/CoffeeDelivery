@@ -6,6 +6,10 @@ interface DefineFontProps {
   color: string;
 }
 
+interface InputsProps {
+  value: boolean
+}
+
 export const PText = styled.span`
   font-family: "roboto", sans-serif;
   font-weight: 400;
@@ -78,30 +82,46 @@ export const DeliveryInfoAddress = styled.div`
     border: 1px solid ${(props) => props.theme["base-button"]};
     padding: 0.75rem;
     border-radius: 4px;
-
+    
     font-family: "roboto", sans-serif;
     font-weight: 400;
     line-height: 130%;
     font-size: 0.85rem;
+
+    outline: none;
+    box-shadow: none;
   }
 `;
 
-export const FirstInput = styled.div``;
+const InputRules = styled.div<InputsProps>`
+  :focus {
+    border: 1px solid ${props => props.theme["yellow-dark"]};
+  }
+  
+  input {
+    ${(props) => props.value && `
+      color: ${props.theme["base-text"]} !important;
+    `}
+  }
+`
 
-export const SecondInput = styled.div`
+export const FirstInput = styled(InputRules)`
+`;
+
+export const SecondInput = styled(InputRules)`
   input {
     flex: 1;
   }
 `;
 
-export const ThirdInput = styled.div`
+export const ThirdInput = styled(InputRules)`
   flex-wrap: wrap;
   :nth-child(2) {
     flex: 1;
   }
 `;
 
-export const FourthInput = styled.div`
+export const FourthInput = styled(InputRules)`
   flex-wrap: wrap;
   :nth-child(2) {
     flex: 1;

@@ -31,8 +31,15 @@ import { defaultTheme } from "../../styles/themes/default";
 
 import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
 import { TotalSumarryCart } from "./TotalSumarryCart";
+import { useState } from "react";
 
 export function ShoppingCart() {
+  const [ inputFilled, SetInputFilled ] = useState(false);
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    SetInputFilled(event.target.value === null ? false : event.target.value.trim() !== '')
+  }
+
   return (
     <CartContainer>
       <OrderInfoContainer>
@@ -49,20 +56,20 @@ export function ShoppingCart() {
               </DeliveryInfoText>
             </DeliveryInfoHeader>
             <DeliveryInfoAddress>
-              <FirstInput>
-                <input type="text" placeholder="CEP" />
+              <FirstInput value={inputFilled}>
+                <input type="text" name="cep" placeholder="CEP" onChange={handleInputChange} />
               </FirstInput>
-              <SecondInput>
-                <input type="text" placeholder="Rua" />
+              <SecondInput value={inputFilled}>
+                <input type="text" placeholder="Rua" onChange={handleInputChange} />
               </SecondInput>
-              <ThirdInput>
-                <input type="text" placeholder="Número" />
-                <input type="text" placeholder="Complemento" />
+              <ThirdInput value={inputFilled}>
+                <input type="text" placeholder="Número" onChange={handleInputChange} />
+                <input type="text" placeholder="Complemento" onChange={handleInputChange} />
               </ThirdInput>
-              <FourthInput>
-                <input type="text" placeholder="Bairro" />
-                <input type="text" placeholder="Cidade" />
-                <input type="text" placeholder="UF" />
+              <FourthInput value={inputFilled}>
+                <input type="text" placeholder="Bairro" onChange={handleInputChange} />
+                <input type="text" placeholder="Cidade" onChange={handleInputChange} />
+                <input type="text" placeholder="UF" onChange={handleInputChange} />
               </FourthInput>
             </DeliveryInfoAddress>
           </DeliveryContainer>
