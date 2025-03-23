@@ -14,6 +14,7 @@ import {
 } from "./HomeStyles";
 import { defaultTheme } from "../../styles/themes/default";
 import { CoffeeCartProps, CoffeeProps, MenuCoffeProps } from "./Home";
+import { FormatPrice } from "../../components/FormatPrice";
 
 export interface EachCoffeeProps {
   coffee: CoffeeProps;
@@ -44,7 +45,9 @@ export function EachCoffee({ coffee, onAddCart }: EachCoffeeProps) {
       <MenuItemTitle>{coffee.ItemTitle}</MenuItemTitle>
       <MenuItemSubTitle>{coffee.ItemSubTitle}</MenuItemSubTitle>
       <MenuItemBuyContainer>
-        <span>{coffee.ItemPrice}</span>
+        <span>
+          <FormatPrice price={coffee.ItemPrice}/>
+        </span>
         <MenuItemActions>
           <MenuItemQuantity>
             <PlusMiniusButton onClick={decreaseQuantity}>
