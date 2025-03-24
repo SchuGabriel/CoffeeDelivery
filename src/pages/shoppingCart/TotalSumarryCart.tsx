@@ -67,7 +67,7 @@ export function TotalSumarryCart() {
         </FontDefine>
       </div>
       <div>
-        <button>CONFIRMAR PEDIDO</button>
+        <button type="submit">CONFIRMAR PEDIDO</button>
       </div>
     </TotalSummary>
   );
