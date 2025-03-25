@@ -7,7 +7,7 @@ interface DefineFontProps {
 }
 
 interface InputsProps {
-  value: boolean
+  value: boolean;
 }
 
 export const PText = styled.span`
@@ -75,38 +75,23 @@ export const DeliveryInfoAddress = styled.div`
     display: flex;
     gap: 0.75rem;
   }
-
-  & > div > input {
-    background-color: ${(props) => props.theme["base-input"]};
-    color: ${(props) => props.theme["base-label"]};
-    border: 1px solid ${(props) => props.theme["base-button"]};
-    padding: 0.75rem;
-    border-radius: 4px;
-    
-    font-family: "roboto", sans-serif;
-    font-weight: 400;
-    line-height: 130%;
-    font-size: 0.85rem;
-
-    outline: none;
-    box-shadow: none;
-  }
 `;
 
 const InputRules = styled.div<InputsProps>`
   :focus {
-    border: 1px solid ${props => props.theme["yellow-dark"]};
+    border: 1px solid ${(props) => props.theme["yellow-dark"]};
   }
-  
+
   input {
-    ${(props) => props.value && `
+    ${(props) =>
+      props.value &&
+      `
       color: ${props.theme["base-text"]} !important;
     `}
   }
-`
-
-export const FirstInput = styled(InputRules)`
 `;
+
+export const FirstInput = styled(InputRules)``;
 
 export const SecondInput = styled(InputRules)`
   input {
@@ -133,15 +118,42 @@ export const FourthInput = styled(InputRules)`
   }
 `;
 
+export const ErrorsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: "roboto", sans-serif;
+  font-weight: 400;
+  line-height: 130%;
+
+  input {
+    background-color: ${(props) => props.theme["base-input"]};
+    color: ${(props) => props.theme["base-label"]};
+    border: 1px solid ${(props) => props.theme["base-button"]};
+    padding: 0.75rem;
+    border-radius: 4px;
+
+    font-size: 0.85rem;
+
+    outline: none;
+    box-shadow: none;
+  }
+
+  span{
+    font-size: 0.75rem;
+    color: #E74C3C;
+  }
+`;
+
 export const PaymentMethodContainer = styled.div`
   display: flex;
   gap: 0.75rem;
   justify-content: center;
 
-  :hover{
-    background-color: ${props => props.theme["base-hover"]};
+  :hover {
+    background-color: ${(props) => props.theme["base-hover"]};
   }
-  
+
   & > div {
     background-color: ${(props) => props.theme["base-button"]};
     border-radius: 6px;
@@ -151,9 +163,8 @@ export const PaymentMethodContainer = styled.div`
     width: calc(100% / 3);
     gap: 0.75rem;
     cursor: pointer;
-
   }
-  
+
   & > div > span {
     color: ${(props) => props.theme["base-text"]};
     font-family: "roboto", sans-serif;
@@ -176,7 +187,7 @@ export const EachCoffeeSelectionedContainer = styled.div`
   max-height: 50vh;
   overflow-y: auto;
   scroll-margin-left: 20px;
-`
+`;
 
 export const CoffeeSelectioned = styled.div`
   display: flex;
@@ -239,12 +250,12 @@ export const CoffeeActionQuantity = styled.div`
     cursor: auto;
   }
 
-  svg{
-    color: ${props => props.theme["purple"]};
+  svg {
+    color: ${(props) => props.theme["purple"]};
   }
 
-  svg:hover{
-    color: ${props => props.theme["purple-dark"]};
+  svg:hover {
+    color: ${(props) => props.theme["purple-dark"]};
   }
 `;
 
@@ -260,15 +271,15 @@ export const RemoveButton = styled.div`
   font-size: 0.75rem;
   line-height: 160%;
 
-  svg{
+  svg {
     color: ${(props) => props.theme["purple"]};
   }
 
-  &:hover{
+  &:hover {
     background-color: ${(props) => props.theme["base-hover"]};
     color: ${(props) => props.theme["base-subtitle"]};
-    
-    svg{
+
+    svg {
       color: ${(props) => props.theme["purple-dark"]};
     }
   }
@@ -306,7 +317,7 @@ export const TotalSummary = styled.div`
     font-size: 0.85rem;
     font-weight: 700;
 
-    &:hover{
+    &:hover {
       background-color: ${(props) => props.theme["yellow-dark"]};
     }
   }

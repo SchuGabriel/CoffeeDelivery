@@ -26,6 +26,7 @@ import {
   ThirdInput,
   FourthInput,
   EachCoffeeSelectionedContainer,
+  ErrorsContainer,
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 
@@ -33,24 +34,94 @@ import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
 import { TotalSumarryCart } from "./TotalSumarryCart";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as zod from "zod";
 import { useCart } from "../../components/context/CartContext";
+
+const cartDataValidationSchema = zod.object({
+  cep: zod.string().min(8, "CEP Invalido 1").max(8, "CEP Invalido"),
+  rua: zod.string().nonempty("Rua é obrigatória"),
+  numero: zod
+    .string()
+    .min(1, "Numero obrigatorio")
+    .max(5, "Numero obrigatorio"),
+  complemento: zod.string().optional(),
+  bairro: zod.string().min(1, "Bairro é obrigatório"),
+  cidade: zod.string().min(1, "Cidade é obrigatória"),
+  uf: zod.string().length(2, "UF deve ter 2 caracteres"),
+});
 
 export function ShoppingCart() {
   const [inputFilled, SetInputFilled] = useState(false);
   const { setCartData } = useCart();
   const navigate = useNavigate();
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState({
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    uf: "",
+  });
+
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    SetInputFilled(
-      event.target.value === null ? false : event.target.value.trim() !== ""
-    );
+    const { name, value } = event.target;
+    SetInputFilled(value === null ? false : value.trim() !== "");
+
+    if (name === "cep" && value.length == 8) {
+      formatCep(value).then((newValue) => {
+        console.log(newValue);
+        setFormData((prevData) => ({
+          ...prevData,
+          rua: newValue.street,
+          bairro: newValue.neighborhood,
+          cidade: newValue.city,
+          uf: newValue.state,
+        }));
+      });
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+
+    setErrors((prevErrors) => {
+      const { [name]: _, ...newErrors } = prevErrors;
+      return newErrors;
+    });
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(event);
+
+    const validationResult = cartDataValidationSchema.safeParse(formData);
+    if (!validationResult.success) {
+      const formattedErrors: Record<string, string> = {};
+      validationResult.error.errors.forEach((err) => {
+        formattedErrors[err.path[0]] = err.message;
+      });
+      setErrors(formattedErrors);
+      return;
+    }
+
+    setErrors({});
     setCartData([]);
     navigate("/orderConfirmed");
+  }
+
+  async function formatCep(cep: string) {
+    try {
+      const response = await fetch(
+        `https://brasilapi.com.br/api/cep/v1/${cep}`
+      );
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      console.log(e, "Deu ruim");
+    }
   }
 
   return (
@@ -71,54 +142,78 @@ export function ShoppingCart() {
               </DeliveryInfoHeader>
               <DeliveryInfoAddress>
                 <FirstInput value={inputFilled}>
-                  <input
-                    type="text"
-                    name="cep"
-                    placeholder="CEP"
-                    onChange={handleInputChange}
-                  />
+                  <ErrorsContainer>
+                    <input
+                      type="text"
+                      name="cep"
+                      placeholder="CEP"
+                      onChange={handleInputChange}
+                    />
+                    {errors.cep && <span>{errors.cep}</span>}
+                  </ErrorsContainer>
                 </FirstInput>
                 <SecondInput value={inputFilled}>
-                  <input
-                    type="text"
-                    name="rua"
-                    placeholder="Rua"
-                    onChange={handleInputChange}
-                  />
+                  <ErrorsContainer>
+                    <input
+                      type="text"
+                      name="rua"
+                      placeholder="Rua"
+                      onChange={handleInputChange}
+                      value={formData.rua}
+                    />
+                    {errors.rua && <span>{errors.rua}</span>}
+                  </ErrorsContainer>
                 </SecondInput>
                 <ThirdInput value={inputFilled}>
-                  <input
-                    type="text"
-                    name="numero"
-                    placeholder="Número"
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    name="complemento"
-                    placeholder="Complemento"
-                    onChange={handleInputChange}
-                  />
+                  <ErrorsContainer>
+                    <input
+                      type="text"
+                      name="numero"
+                      placeholder="Número"
+                      onChange={handleInputChange}
+                    />
+                    {errors.numero && <span>{errors.numero}</span>}
+                  </ErrorsContainer>
+                  <ErrorsContainer>
+                    <input
+                      type="text"
+                      name="complemento"
+                      placeholder="Complemento"
+                      onChange={handleInputChange}
+                    />
+                  </ErrorsContainer>
                 </ThirdInput>
                 <FourthInput value={inputFilled}>
-                  <input
-                    type="text"
-                    name="bairro"
-                    placeholder="Bairro"
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    name="cidade"
-                    placeholder="Cidade"
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    name="uf"
-                    placeholder="UF"
-                    onChange={handleInputChange}
-                  />
+                  <ErrorsContainer>
+                    <input
+                      type="text"
+                      name="bairro"
+                      placeholder="Bairro"
+                      onChange={handleInputChange}
+                      value={formData.bairro}
+                    />
+                    {errors.bairro && <span>{errors.bairro}</span>}
+                  </ErrorsContainer>
+                  <ErrorsContainer>
+                    <input
+                      type="text"
+                      name="cidade"
+                      placeholder="Cidade"
+                      onChange={handleInputChange}
+                      value={formData.cidade}
+                    />
+                    {errors.cidade && <span>{errors.cidade}</span>}
+                  </ErrorsContainer>
+                  <ErrorsContainer style={{ width: "100%" }}>
+                    <input
+                      type="text"
+                      name="uf"
+                      placeholder="UF"
+                      onChange={handleInputChange}
+                      value={formData.uf}
+                    />
+                    {errors.uf && <span>{errors.uf}</span>}
+                  </ErrorsContainer>
                 </FourthInput>
               </DeliveryInfoAddress>
             </DeliveryContainer>
