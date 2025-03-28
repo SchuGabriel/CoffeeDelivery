@@ -10,6 +10,10 @@ interface InputsProps {
   value: boolean;
 }
 
+interface GroupRadioPaymentProps {
+  active: boolean;
+}
+
 export const PText = styled.span`
   font-family: "roboto", sans-serif;
   font-weight: 400;
@@ -153,19 +157,32 @@ export const PaymentMethodContainer = styled.div`
   :hover {
     background-color: ${(props) => props.theme["base-hover"]};
   }
+`;
 
-  & > div {
-    background-color: ${(props) => props.theme["base-button"]};
-    border-radius: 6px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    width: calc(100% / 3);
-    gap: 0.75rem;
-    cursor: pointer;
+export const GroupRadioPayment = styled.label<GroupRadioPaymentProps>`
+  background-color: ${(props) => props.theme["base-button"]};
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  width: calc(100% / 3);
+  gap: 0.75rem;
+  cursor: pointer;
+
+  input[type="radio"] {
+    display: none;
   }
 
-  & > div > span {
+  &:has(input:checked) {
+    border: 1px solid ${(props) => props.theme["purple"]};
+    background-color: ${(props) => props.theme["purple-light"]};
+    * {
+      background-color: ${(props) => props.theme["purple-light"]};
+    }
+  }
+
+  span {
     color: ${(props) => props.theme["base-text"]};
     font-family: "roboto", sans-serif;
     font-size: 0.75rem;

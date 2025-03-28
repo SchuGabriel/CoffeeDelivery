@@ -27,6 +27,7 @@ import {
   FourthInput,
   EachCoffeeSelectionedContainer,
   ErrorsContainer,
+  GroupRadioPayment,
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 
@@ -244,18 +245,21 @@ export function ShoppingCart() {
                 </DeliveryInfoText>
               </DeliveryInfoHeader>
               <PaymentMethodContainer>
-                <div>
+                <GroupRadioPayment htmlFor="creditCard" active={true}>
+                  <input type="radio" name="paymentMethod" id="creditCard" />
                   <CreditCard size={16} color={defaultTheme["purple"]} />
                   <span>CARTÃO DE CRÉDITO</span>
-                </div>
-                <div>
+                </GroupRadioPayment>
+                <GroupRadioPayment htmlFor="debitCard" active={false}>
+                  <input type="radio" name="paymentMethod" id="debitCard" />
                   <Money size={16} color={defaultTheme["purple"]} />
                   <span>CARTÃO DE DÉBITO</span>
-                </div>
-                <div>
+                </GroupRadioPayment>
+                <GroupRadioPayment htmlFor="money" active={false}>
+                  <input type="radio" name="paymentMethod" id="money" />
                   <Bank size={16} color={defaultTheme["purple"]} />
                   <span>DINHEIRO</span>
-                </div>
+                </GroupRadioPayment>
               </PaymentMethodContainer>
             </DeliveryContainer>
           </AddressAndPaymentContainer>
