@@ -94,7 +94,7 @@ const InputRules = styled.div<InputsProps>`
 export const FirstInput = styled(InputRules)``;
 
 export const SecondInput = styled(InputRules)`
-  input {
+  * {
     flex: 1;
   }
 `;
@@ -139,9 +139,9 @@ export const ErrorsContainer = styled.div`
     box-shadow: none;
   }
 
-  span{
+  span {
     font-size: 0.75rem;
-    color: #E74C3C;
+    color: #e74c3c;
   }
 `;
 

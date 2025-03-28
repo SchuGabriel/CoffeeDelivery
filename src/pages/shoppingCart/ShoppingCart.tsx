@@ -32,13 +32,13 @@ import { defaultTheme } from "../../styles/themes/default";
 
 import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
 import { TotalSumarryCart } from "./TotalSumarryCart";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as zod from "zod";
 import { useCart } from "../../components/context/CartContext";
 
 const cartDataValidationSchema = zod.object({
-  cep: zod.string().min(8, "CEP Invalido 1").max(8, "CEP Invalido"),
+  cep: zod.string().min(8, "CEP Invalido").max(8, "CEP Invalido"),
   rua: zod.string().nonempty("Rua é obrigatória"),
   numero: zod
     .string()
@@ -68,18 +68,28 @@ export function ShoppingCart() {
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
+
     SetInputFilled(value === null ? false : value.trim() !== "");
 
     if (name === "cep" && value.length == 8) {
+      console.log("nome:", name, value);
       formatCep(value).then((newValue) => {
-        console.log(newValue);
+        console.log("novo valor", value);
         setFormData((prevData) => ({
           ...prevData,
-          rua: newValue.street,
-          bairro: newValue.neighborhood,
-          cidade: newValue.city,
-          uf: newValue.state,
+          rua: newValue.street || "",
+          bairro: newValue.neighborhood || "",
+          cidade: newValue.city || "",
+          uf: newValue.state || "",
+          cep: value,
         }));
+
+        if (newValue.street) {
+          setErrors((prevErrors) => {
+            const { rua, bairro, cidade, uf, ...newErrors } = prevErrors;
+            return newErrors;
+          });
+        }
       });
     } else {
       setFormData((prevData) => ({
@@ -120,7 +130,12 @@ export function ShoppingCart() {
       const data = await response.json();
       return data;
     } catch (e) {
-      console.log(e, "Deu ruim");
+      return {
+        neighborhood: "",
+        street: "",
+        state: "",
+        city: "",
+      };
     }
   }
 
