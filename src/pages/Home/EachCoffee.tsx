@@ -29,7 +29,7 @@ export function EachCoffee({ coffee, onAddCart }: EachCoffeeProps) {
   }
 
   function decreaseQuantity() {
-    setQuantity((prevQuantity) => prevQuantity - 1);
+    setQuantity((prevQuantity) => prevQuantity === 1 ? prevQuantity : prevQuantity - 1);
   }
 
   useEffect(() => {}, [quantity]);

@@ -32,7 +32,7 @@ export function EachCoffeeSelectioned() {
     setCartData(
       cartData.map((coffee) =>
         coffee.id === idCoffee
-          ? { ...coffee, quantity: coffee.quantity - 1}
+          ? { ...coffee, quantity: coffee.quantity === 1 ? coffee.quantity : coffee.quantity - 1}
           : coffee
       )
     );
