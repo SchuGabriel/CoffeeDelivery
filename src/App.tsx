@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { BrowserRouter } from "react-router-dom";

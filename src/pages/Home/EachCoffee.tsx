@@ -13,7 +13,7 @@ import {
   PlusMiniusButton,
 } from "./HomeStyles";
 import { defaultTheme } from "../../styles/themes/default";
-import { CoffeeCartProps, CoffeeProps, MenuCoffeProps } from "./Home";
+import { CoffeeCartProps, CoffeeProps } from "./Home";
 import { FormatPrice } from "../../components/FormatPrice";
 
 export interface EachCoffeeProps {

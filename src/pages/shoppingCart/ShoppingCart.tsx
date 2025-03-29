@@ -1,45 +1,15 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from "@phosphor-icons/react";
-import {
-  AddressAndPaymentContainer,
-  CartContainer,
-  CoffeeSelectionContainer,
-  DeliveryInfoAddress,
-  DeliveryContainer,
-  DeliveryInfoHeader,
-  DeliveryInfoText,
-  OrderInfoContainer,
-  PaymentMethodContainer,
-  ProductsInfoContainer,
-  TitleContainerText,
-  SpanText,
-  PText,
-  TotalSummary,
-  FontDefine,
-  FirstInput,
-  SecondInput,
-  ThirdInput,
-  FourthInput,
-  EachCoffeeSelectionedContainer,
-  ErrorsContainer,
-  GroupRadioPayment,
-} from "./ShoppingCartStyles";
-import { defaultTheme } from "../../styles/themes/default";
-
-import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
-import { TotalSumarryCart } from "./TotalSumarryCart";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import * as zod from "zod";
+
 import { useCart } from "../../context/CartContext";
+import { useErrors } from "../../context";
+
 import { Products } from "./Products";
 import { Order } from "./Order";
-import { useErrors } from "../../context";
+
+import { CartContainer } from "./ShoppingCartStyles";
 
 const cartDataValidationSchema = zod.object({
   cep: zod.string().min(8, "CEP Invalido").max(8, "CEP Invalido"),

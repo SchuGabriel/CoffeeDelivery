@@ -13,7 +13,6 @@ import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 import HeroImage from "./image/HeroImage.png";
 
 import { MenuCoffee } from "./MenuCoffe";
-import { useEffect, useState } from "react";
 import { CartItem, useCart } from "../../context/CartContext";
 
 export interface CoffeeProps {
