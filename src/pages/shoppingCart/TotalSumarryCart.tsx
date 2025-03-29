@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCart } from "../../components/context/CartContext";
+import { useCart } from "../../context/CartContext";
 import { defaultTheme } from "../../styles/themes/default";
 import { FontDefine, TotalSummary } from "./ShoppingCartStyles";
 

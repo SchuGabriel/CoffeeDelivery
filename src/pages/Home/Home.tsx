@@ -14,7 +14,7 @@ import HeroImage from "./image/HeroImage.png";
 
 import { MenuCoffee } from "./MenuCoffe";
 import { useEffect, useState } from "react";
-import { CartItem, useCart } from "../../components/context/CartContext";
+import { CartItem, useCart } from "../../context/CartContext";
 
 export interface CoffeeProps {
   ItemId: number;
@@ -53,9 +53,7 @@ export function Home() {
             : item
         )
         .concat(
-          prevCart.find((item) => item.id === coffee.ItemId)
-            ? []
-            : [newCoffee]
+          prevCart.find((item) => item.id === coffee.ItemId) ? [] : [newCoffee]
         );
     });
   }

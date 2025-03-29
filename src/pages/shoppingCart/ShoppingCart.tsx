@@ -36,7 +36,10 @@ import { TotalSumarryCart } from "./TotalSumarryCart";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as zod from "zod";
-import { useCart } from "../../components/context/CartContext";
+import { useCart } from "../../context/CartContext";
+import { Products } from "./Products";
+import { Order } from "./Order";
+import { useErrors } from "../../context";
 
 const cartDataValidationSchema = zod.object({
   cep: zod.string().min(8, "CEP Invalido").max(8, "CEP Invalido"),
@@ -59,26 +62,12 @@ const cartDataValidationSchema = zod.object({
 });
 
 export function ShoppingCart() {
-  const [inputFilled, SetInputFilled] = useState(false);
-  const { setCartData } = useCart();
+  const { setCartData, formData, setFormData } = useCart();
+  const { setErrors } = useErrors();
   const navigate = useNavigate();
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formData, setFormData] = useState({
-    cep: "",
-    rua: "",
-    numero: "",
-    complemento: "",
-    bairro: "",
-    cidade: "",
-    uf: "",
-    paymentMethod: "",
-  });
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-
-    SetInputFilled(value === null ? false : value.trim() !== "");
 
     if (name === "cep" && value.length == 8) {
       console.log("nome:", name, value);
@@ -151,157 +140,8 @@ export function ShoppingCart() {
   return (
     <form onSubmit={handleSubmit}>
       <CartContainer>
-        <OrderInfoContainer>
-          <TitleContainerText>Complete seu pedido</TitleContainerText>
-          <AddressAndPaymentContainer>
-            <DeliveryContainer>
-              <DeliveryInfoHeader>
-                <MapPinLine size={22} color={defaultTheme["yellow-dark"]} />
-                <DeliveryInfoText>
-                  <PText>Endereço de Entrega</PText>
-                  <SpanText>
-                    Informe o endereço onde deseja receber seu pedido
-                  </SpanText>
-                </DeliveryInfoText>
-              </DeliveryInfoHeader>
-              <DeliveryInfoAddress>
-                <FirstInput value={inputFilled}>
-                  <ErrorsContainer>
-                    <input
-                      type="text"
-                      name="cep"
-                      placeholder="CEP"
-                      onChange={handleInputChange}
-                    />
-                    {errors.cep && <span>{errors.cep}</span>}
-                  </ErrorsContainer>
-                </FirstInput>
-                <SecondInput value={inputFilled}>
-                  <ErrorsContainer>
-                    <input
-                      type="text"
-                      name="rua"
-                      placeholder="Rua"
-                      onChange={handleInputChange}
-                      value={formData.rua}
-                    />
-                    {errors.rua && <span>{errors.rua}</span>}
-                  </ErrorsContainer>
-                </SecondInput>
-                <ThirdInput value={inputFilled}>
-                  <ErrorsContainer>
-                    <input
-                      type="text"
-                      name="numero"
-                      placeholder="Número"
-                      onChange={handleInputChange}
-                    />
-                    {errors.numero && <span>{errors.numero}</span>}
-                  </ErrorsContainer>
-                  <ErrorsContainer>
-                    <input
-                      type="text"
-                      name="complemento"
-                      placeholder="Complemento"
-                      onChange={handleInputChange}
-                    />
-                  </ErrorsContainer>
-                </ThirdInput>
-                <FourthInput value={inputFilled}>
-                  <ErrorsContainer>
-                    <input
-                      type="text"
-                      name="bairro"
-                      placeholder="Bairro"
-                      onChange={handleInputChange}
-                      value={formData.bairro}
-                    />
-                    {errors.bairro && <span>{errors.bairro}</span>}
-                  </ErrorsContainer>
-                  <ErrorsContainer>
-                    <input
-                      type="text"
-                      name="cidade"
-                      placeholder="Cidade"
-                      onChange={handleInputChange}
-                      value={formData.cidade}
-                    />
-                    {errors.cidade && <span>{errors.cidade}</span>}
-                  </ErrorsContainer>
-                  <ErrorsContainer style={{ width: "100%" }}>
-                    <input
-                      type="text"
-                      name="uf"
-                      placeholder="UF"
-                      onChange={handleInputChange}
-                      value={formData.uf}
-                    />
-                    {errors.uf && <span>{errors.uf}</span>}
-                  </ErrorsContainer>
-                </FourthInput>
-              </DeliveryInfoAddress>
-            </DeliveryContainer>
-            <DeliveryContainer>
-              <DeliveryInfoHeader>
-                <CurrencyDollar size={22} color={defaultTheme["purple"]} />
-                <DeliveryInfoText>
-                  <PText>Pagamento</PText>
-                  <SpanText>
-                    O pagamento é feito na entrega. Escolha a forma que deseja
-                    pagar
-                  </SpanText>
-                </DeliveryInfoText>
-              </DeliveryInfoHeader>
-              <ErrorsContainer>
-                <PaymentMethodContainer>
-                  <GroupRadioPayment htmlFor="creditCard">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      id="creditCard"
-                      value={"credit"}
-                      onChange={handleInputChange}
-                    />
-                    <CreditCard size={16} color={defaultTheme["purple"]} />
-                    <span>CARTÃO DE CRÉDITO</span>
-                  </GroupRadioPayment>
-                  <GroupRadioPayment htmlFor="debitCard">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      id="debitCard"
-                      value={"debit"}
-                      onChange={handleInputChange}
-                    />
-                    <Money size={16} color={defaultTheme["purple"]} />
-                    <span>CARTÃO DE DÉBITO</span>
-                  </GroupRadioPayment>
-                  <GroupRadioPayment htmlFor="money">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      id="money"
-                      value={"money"}
-                      onChange={handleInputChange}
-                    />
-                    <Bank size={16} color={defaultTheme["purple"]} />
-                    <span>DINHEIRO</span>
-                  </GroupRadioPayment>
-                </PaymentMethodContainer>
-                {errors.paymentMethod && <span>{errors.paymentMethod}</span>}
-              </ErrorsContainer>
-            </DeliveryContainer>
-          </AddressAndPaymentContainer>
-        </OrderInfoContainer>
-        <ProductsInfoContainer>
-          <TitleContainerText>Cafés Selecionados</TitleContainerText>
-          <CoffeeSelectionContainer>
-            <EachCoffeeSelectionedContainer>
-              <EachCoffeeSelectioned />
-            </EachCoffeeSelectionedContainer>
-            <TotalSumarryCart />
-          </CoffeeSelectionContainer>
-        </ProductsInfoContainer>
+        <Order onInputChange={handleInputChange} />
+        <Products />
       </CartContainer>
     </form>
   );

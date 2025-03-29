@@ -11,7 +11,7 @@ import {
   ShoppingItem,
 } from "./styled";
 import { defaultTheme } from "../../styles/themes/default";
-import { useCart } from "../../components/context/CartContext";
+import { useCart } from "../../context/CartContext";
 import { Brand } from "./components/Brand";
 
 export function Header() {

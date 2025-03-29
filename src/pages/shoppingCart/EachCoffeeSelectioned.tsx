@@ -9,7 +9,7 @@ import {
   RemoveButton,
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
-import { useCart } from "../../components/context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 export function EachCoffeeSelectioned() {
   const { cartData, setCartData } = useCart();
@@ -32,7 +32,11 @@ export function EachCoffeeSelectioned() {
     setCartData(
       cartData.map((coffee) =>
         coffee.id === idCoffee
-          ? { ...coffee, quantity: coffee.quantity === 1 ? coffee.quantity : coffee.quantity - 1}
+          ? {
+              ...coffee,
+              quantity:
+                coffee.quantity === 1 ? coffee.quantity : coffee.quantity - 1,
+            }
           : coffee
       )
     );
@@ -53,13 +57,10 @@ export function EachCoffeeSelectioned() {
                     onClick={() => decreaseQuantity(coffee.id)}
                   />
                   <span>{coffee.quantity}</span>
-                  <Plus
-                    size={16}
-                    onClick={() => increaseQuantity(coffee.id)}
-                  />
+                  <Plus size={16} onClick={() => increaseQuantity(coffee.id)} />
                 </CoffeeActionQuantity>
                 <RemoveButton onClick={() => handleRemoveCoffee(coffee.id)}>
-                  <Trash size={16}  />
+                  <Trash size={16} />
                   <span>REMOVER</span>
                 </RemoveButton>
               </CoffeeActions>
