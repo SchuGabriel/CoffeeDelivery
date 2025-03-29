@@ -10,10 +10,6 @@ interface InputsProps {
   value: boolean;
 }
 
-interface GroupRadioPaymentProps {
-  active: boolean;
-}
-
 export const PText = styled.span`
   font-family: "roboto", sans-serif;
   font-weight: 400;
@@ -130,7 +126,7 @@ export const ErrorsContainer = styled.div`
   font-weight: 400;
   line-height: 130%;
 
-  input {
+  input:not(input[type="radio"]) {
     background-color: ${(props) => props.theme["base-input"]};
     color: ${(props) => props.theme["base-label"]};
     border: 1px solid ${(props) => props.theme["base-button"]};
@@ -159,7 +155,7 @@ export const PaymentMethodContainer = styled.div`
   }
 `;
 
-export const GroupRadioPayment = styled.label<GroupRadioPaymentProps>`
+export const GroupRadioPayment = styled.label`
   background-color: ${(props) => props.theme["base-button"]};
   border-radius: 6px;
   border: 1px solid transparent;

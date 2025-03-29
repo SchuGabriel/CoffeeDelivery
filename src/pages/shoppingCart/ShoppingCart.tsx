@@ -33,7 +33,7 @@ import { defaultTheme } from "../../styles/themes/default";
 
 import { EachCoffeeSelectioned } from "./EachCoffeeSelectioned";
 import { TotalSumarryCart } from "./TotalSumarryCart";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as zod from "zod";
 import { useCart } from "../../components/context/CartContext";
@@ -49,6 +49,13 @@ const cartDataValidationSchema = zod.object({
   bairro: zod.string().min(1, "Bairro é obrigatório"),
   cidade: zod.string().min(1, "Cidade é obrigatória"),
   uf: zod.string().length(2, "UF deve ter 2 caracteres"),
+
+  paymentMethod: zod.enum(["credit", "debit", "money"], {
+    errorMap: () => ({
+      message:
+        "Método de pagamento inválido. Escolha entre 'crédito', 'débito' ou 'dinheiro'.",
+    }),
+  }),
 });
 
 export function ShoppingCart() {
@@ -65,6 +72,7 @@ export function ShoppingCart() {
     bairro: "",
     cidade: "",
     uf: "",
+    paymentMethod: "",
   });
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -244,23 +252,44 @@ export function ShoppingCart() {
                   </SpanText>
                 </DeliveryInfoText>
               </DeliveryInfoHeader>
-              <PaymentMethodContainer>
-                <GroupRadioPayment htmlFor="creditCard" active={true}>
-                  <input type="radio" name="paymentMethod" id="creditCard" />
-                  <CreditCard size={16} color={defaultTheme["purple"]} />
-                  <span>CARTÃO DE CRÉDITO</span>
-                </GroupRadioPayment>
-                <GroupRadioPayment htmlFor="debitCard" active={false}>
-                  <input type="radio" name="paymentMethod" id="debitCard" />
-                  <Money size={16} color={defaultTheme["purple"]} />
-                  <span>CARTÃO DE DÉBITO</span>
-                </GroupRadioPayment>
-                <GroupRadioPayment htmlFor="money" active={false}>
-                  <input type="radio" name="paymentMethod" id="money" />
-                  <Bank size={16} color={defaultTheme["purple"]} />
-                  <span>DINHEIRO</span>
-                </GroupRadioPayment>
-              </PaymentMethodContainer>
+              <ErrorsContainer>
+                <PaymentMethodContainer>
+                  <GroupRadioPayment htmlFor="creditCard">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      id="creditCard"
+                      value={"credit"}
+                      onChange={handleInputChange}
+                    />
+                    <CreditCard size={16} color={defaultTheme["purple"]} />
+                    <span>CARTÃO DE CRÉDITO</span>
+                  </GroupRadioPayment>
+                  <GroupRadioPayment htmlFor="debitCard">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      id="debitCard"
+                      value={"debit"}
+                      onChange={handleInputChange}
+                    />
+                    <Money size={16} color={defaultTheme["purple"]} />
+                    <span>CARTÃO DE DÉBITO</span>
+                  </GroupRadioPayment>
+                  <GroupRadioPayment htmlFor="money">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      id="money"
+                      value={"money"}
+                      onChange={handleInputChange}
+                    />
+                    <Bank size={16} color={defaultTheme["purple"]} />
+                    <span>DINHEIRO</span>
+                  </GroupRadioPayment>
+                </PaymentMethodContainer>
+                {errors.paymentMethod && <span>{errors.paymentMethod}</span>}
+              </ErrorsContainer>
             </DeliveryContainer>
           </AddressAndPaymentContainer>
         </OrderInfoContainer>
