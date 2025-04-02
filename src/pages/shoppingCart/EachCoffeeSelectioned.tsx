@@ -10,36 +10,26 @@ import {
 } from "./ShoppingCartStyles";
 import { defaultTheme } from "../../styles/themes/default";
 import { useCart } from "../../context/CartContext";
+import {
+  ActionTypes,
+  descreaseQuantityAction,
+  increaseQuantityAction,
+  removeCoffeeAction,
+} from "../../reducers/cart/actions";
 
 export function EachCoffeeSelectioned() {
-  const { cartData, setCartData } = useCart();
+  const { cartData, dispatch } = useCart();
 
   function handleRemoveCoffee(idRemove: number) {
-    setCartData(cartData.filter((coffee) => coffee.id !== idRemove));
+    dispatch(removeCoffeeAction(idRemove));
   }
 
   function increaseQuantity(idCoffee: number) {
-    setCartData(
-      cartData.map((coffee) =>
-        coffee.id === idCoffee
-          ? { ...coffee, quantity: coffee.quantity + 1 }
-          : coffee
-      )
-    );
+    dispatch(increaseQuantityAction(idCoffee));
   }
 
   function decreaseQuantity(idCoffee: number) {
-    setCartData(
-      cartData.map((coffee) =>
-        coffee.id === idCoffee
-          ? {
-              ...coffee,
-              quantity:
-                coffee.quantity === 1 ? coffee.quantity : coffee.quantity - 1,
-            }
-          : coffee
-      )
-    );
+    dispatch(descreaseQuantityAction(idCoffee));
   }
 
   return (

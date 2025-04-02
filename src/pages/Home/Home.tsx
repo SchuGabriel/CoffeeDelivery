@@ -14,6 +14,7 @@ import HeroImage from "./image/HeroImage.png";
 
 import { MenuCoffee } from "./MenuCoffe";
 import { CartItem, useCart } from "../../context/CartContext";
+import { ActionTypes, addCoffeeAction } from "../../reducers/cart/actions";
 
 export interface CoffeeProps {
   ItemId: number;
@@ -34,27 +35,10 @@ export interface MenuCoffeProps {
 }
 
 export function Home() {
-  const { setCartData } = useCart();
+  const { dispatch } = useCart();
 
   function HandleAddCart({ coffee, quantity }: CoffeeCartProps) {
-    setCartData((prevCart) => {
-      const newCoffee: CartItem = {
-        id: coffee.ItemId,
-        name: coffee.ItemTitle,
-        price: coffee.ItemPrice,
-        image: coffee.Image,
-        quantity: quantity,
-      };
-      return prevCart
-        .map((item) =>
-          item.id === coffee.ItemId
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
-        .concat(
-          prevCart.find((item) => item.id === coffee.ItemId) ? [] : [newCoffee]
-        );
-    });
+    dispatch(addCoffeeAction({ coffee, quantity }));
   }
 
   return (

@@ -1,4 +1,12 @@
-import React, { ReactNode, createContext, useContext, useState } from "react";
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
+import { useErrors } from "./ErrorsContext";
+import { CartReducer } from "../reducers/cart/reducer";
 
 export interface CartItem {
   id: number;
@@ -8,7 +16,7 @@ export interface CartItem {
   quantity: number;
 }
 
-interface FormDataType {
+export interface FormDataType {
   cep: string;
   rua: string;
   numero: string;
@@ -21,7 +29,7 @@ interface FormDataType {
 
 interface CartContextType {
   cartData: CartItem[];
-  setCartData: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  dispatch: React.Dispatch<{ type: string; payload?: any }>;
   formData: FormDataType;
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
 }
@@ -29,7 +37,6 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartData, setCartData] = useState<CartItem[]>([]);
   const [formData, setFormData] = useState<FormDataType>({
     cep: "",
     rua: "",
@@ -41,10 +48,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     paymentMethod: "",
   });
 
+  const [cartData, dispatch] = useReducer(CartReducer, []);
+
   return (
-    <CartContext.Provider
-      value={{ cartData, setCartData, formData, setFormData }}
-    >
+    <CartContext.Provider value={{ cartData, dispatch, formData, setFormData }}>
       {children}
     </CartContext.Provider>
   );

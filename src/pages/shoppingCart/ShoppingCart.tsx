@@ -10,6 +10,7 @@ import { Products } from "./Products";
 import { Order } from "./Order";
 
 import { CartContainer } from "./ShoppingCartStyles";
+import { ActionTypes, cleanCoffeeAction } from "../../reducers/cart/actions";
 
 const cartDataValidationSchema = zod.object({
   cep: zod.string().min(8, "CEP Invalido").max(8, "CEP Invalido"),
@@ -32,7 +33,7 @@ const cartDataValidationSchema = zod.object({
 });
 
 export function ShoppingCart() {
-  const { setCartData, formData, setFormData } = useCart();
+  const { cartData, formData, setFormData, dispatch } = useCart();
   const { setErrors } = useErrors();
   const navigate = useNavigate();
 
@@ -40,9 +41,7 @@ export function ShoppingCart() {
     const { name, value } = event.target;
 
     if (name === "cep" && value.length == 8) {
-      console.log("nome:", name, value);
       formatCep(value).then((newValue) => {
-        console.log("novo valor", value);
         setFormData((prevData) => ({
           ...prevData,
           rua: newValue.street || "",
@@ -75,6 +74,8 @@ export function ShoppingCart() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (cartData.length == 0) return;
+
     const validationResult = cartDataValidationSchema.safeParse(formData);
     if (!validationResult.success) {
       const formattedErrors: Record<string, string> = {};
@@ -85,8 +86,18 @@ export function ShoppingCart() {
       return;
     }
 
+    dispatch(cleanCoffeeAction());
+    setFormData({
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      uf: "",
+      paymentMethod: "",
+    });
     setErrors({});
-    setCartData([]);
     navigate("/orderConfirmed");
   }
 
