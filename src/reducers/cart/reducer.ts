@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import { CartItem } from "../../context/CartContext";
 import { ActionTypes } from "./actions";
 
@@ -12,35 +13,34 @@ export function CartReducer(state: CartItem[], action: any) {
         image: action.payload.coffee.Image,
         quantity: action.payload.quantity,
       };
-      return state
-        .map((item) =>
-          item.id === action.payload.coffee.ItemId
-            ? { ...item, quantity: item.quantity + action.payload.quantity }
-            : item
-        )
-        .concat(
-          state.find((item) => item.id === action.payload.coffee.ItemId)
-            ? []
-            : [newCoffee]
+      return produce(state, (draft) => {
+        const coffeeCurrentIndexAdd = draft.findIndex(
+          (coffee) => coffee.id === action.payload.coffee.ItemId
         );
+        if (coffeeCurrentIndexAdd !== 1) {
+          draft[coffeeCurrentIndexAdd].quantity += action.payload.quantity;
+        } else {
+          draft.push(newCoffee);
+        }
+      });
 
     case ActionTypes.INCREASE_QUANTITY:
-      return state.map((coffee) =>
-        coffee.id === action.payload.idCoffee
-          ? { ...coffee, quantity: coffee.quantity + 1 }
-          : coffee
-      );
+      const coffeeCurrentIndexIncrease = state.findIndex((coffee) => {
+        return coffee.id === action.payload.idCoffee;
+      });
+      return produce(state, (draft) => {
+        draft[coffeeCurrentIndexIncrease].quantity++;
+      });
 
     case ActionTypes.DESCREASE_QUANTITY:
-      return state.map((coffee) =>
-        coffee.id === action.payload.idCoffee
-          ? {
-              ...coffee,
-              quantity:
-                coffee.quantity === 1 ? coffee.quantity : coffee.quantity - 1,
-            }
-          : coffee
-      );
+      const coffeeCurrentIndexDescrease = state.findIndex((coffee) => {
+        return coffee.id == action.payload.idCoffee;
+      });
+      return produce(state, (draft) => {
+        if (draft[coffeeCurrentIndexDescrease].quantity !== 1) {
+          draft[coffeeCurrentIndexDescrease].quantity--;
+        }
+      });
 
     case ActionTypes.REMOVE_COFFEE:
       return state.filter((coffee) => coffee.id !== action.payload.idRemove);
