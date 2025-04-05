@@ -19,6 +19,18 @@ export const HeroContainer = styled.div`
   height: 34rem;
   padding: 5.75rem 10rem;
   gap: 3.5rem;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -73,10 +85,20 @@ export const DifferentiatorsSection = styled.div`
   grid-column-gap: 2.5rem;
   grid-row-gap: 1.25rem;
   grid-auto-flow: row;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
 `;
 
 export const MenuSection = styled.div`
   padding: 2rem 10rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const MenuTitle = styled.div`
@@ -90,7 +112,7 @@ export const MenuTitle = styled.div`
 
 export const MenuContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 2.5rem 2rem;
   justify-items: center;
 `;
@@ -191,7 +213,7 @@ export const MenuItemQuantity = styled.div`
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    color: ${props => props.theme["base-text"]};
+    color: ${(props) => props.theme["base-text"]};
   }
 `;
 
@@ -199,10 +221,10 @@ export const PlusMiniusButton = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: ${props => props.theme["purple"]};
+  color: ${(props) => props.theme["purple"]};
 
-  svg:hover{
-    color: ${props => props.theme["purple-dark"]};
+  svg:hover {
+    color: ${(props) => props.theme["purple-dark"]};
   }
 `;
 
@@ -215,7 +237,7 @@ export const MenuItemActionShopping = styled.div`
 
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background-color: ${(props) => props.theme["purple"]};
   }
 `;

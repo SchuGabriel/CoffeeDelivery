@@ -31,16 +31,25 @@ export const CartContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const OrderInfoContainer = styled.div`
   width: 60%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const AddressAndPaymentContainer = styled.div``;
 
 export const DeliveryInfoHeader = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 `;
 
@@ -89,6 +98,12 @@ const InputRules = styled.div<InputsProps>`
       color: ${props.theme["base-text"]} !important;
     `}
   }
+
+  @media (max-width: 768px) {
+    * {
+      flex: 1;
+    }
+  }
 `;
 
 export const FirstInput = styled(InputRules)``;
@@ -115,6 +130,10 @@ export const FourthInput = styled(InputRules)`
   :nth-child(3) {
     width: 4rem;
     flex: 0;
+
+    @media (max-width: 768px) {
+      flex: 1;
+    }
   }
 `;
 
@@ -153,6 +172,11 @@ export const PaymentMethodContainer = styled.div`
   :hover {
     background-color: ${(props) => props.theme["base-hover"]};
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const GroupRadioPayment = styled.label`
@@ -184,10 +208,18 @@ export const GroupRadioPayment = styled.label`
     font-size: 0.75rem;
     font-weight: 400;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const ProductsInfoContainer = styled.div`
   flex: 1;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const CoffeeSelectionContainer = styled.div`
@@ -215,6 +247,10 @@ export const CoffeeSelectioned = styled.div`
 
   & + & {
     margin-top: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
   }
 `;
 

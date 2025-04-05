@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface IconProps {
-  backgroundColor: string
+  backgroundColor: string;
 }
 
 export const OrderContainer = styled.div`
@@ -9,6 +9,10 @@ export const OrderContainer = styled.div`
   flex-direction: column;
   gap: 2.25rem;
   padding: 5rem 10rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const OrderHeader = styled.div`
@@ -34,6 +38,11 @@ export const OrderDetails = styled.div`
   display: flex;
   gap: 6.25rem;
   width: 100%;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -57,6 +66,10 @@ export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const InfoItem = styled.div`
@@ -66,23 +79,23 @@ export const InfoItem = styled.div`
 `;
 
 export const IconContainer = styled.div<IconProps>`
-  background-color: ${props => props.backgroundColor};
+  background-color: ${(props) => props.backgroundColor};
   border-radius: 50%;
   display: flex;
   justify-content: center;
   padding: 0.5rem;
   height: 2rem;
   width: 2rem;
-`
+`;
 
 export const InfoText = styled.div`
   font-family: "roboto", sans-serif;
   line-height: 130%;
   font-size: 1rem;
   font-weight: 400;
-  color: ${props => props.theme["base-text"]};
+  color: ${(props) => props.theme["base-text"]};
 
-  span{
+  span {
     font-weight: 700;
   }
 `;
@@ -91,4 +104,8 @@ export const OrderImage = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
+
+  img {
+    max-width: 100%;
+  }
 `;

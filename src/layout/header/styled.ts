@@ -4,6 +4,13 @@ export const HeaderContainer = styled.div`
   height: 6.5rem;
   background-color: ${(props) => props.theme.background};
   padding: 2rem 10rem;
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+  }
 `;
 
 export const NavbarContainer = styled.nav`

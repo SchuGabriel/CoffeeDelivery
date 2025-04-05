@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { DefaultLayout } from "../layout/DefaultLayout";
 import { Home } from "../pages/Home/Home";
-import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart.tsx"
+import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart.tsx";
 import { OrderConfirmed } from "../pages/OrderConfirmed/OrderConfirmed.tsx";
 
 export function Router() {

@@ -17,8 +17,9 @@ export function CartReducer(state: CartItem[], action: any) {
         const coffeeCurrentIndexAdd = draft.findIndex(
           (coffee) => coffee.id === action.payload.coffee.ItemId
         );
-        if (coffeeCurrentIndexAdd !== 1) {
-          draft[coffeeCurrentIndexAdd].quantity += action.payload.quantity;
+        if (coffeeCurrentIndexAdd !== -1) {
+          console.log(draft[coffeeCurrentIndexAdd].quantity);
+          draft[coffeeCurrentIndexAdd].quantity = action.payload.quantity;
         } else {
           draft.push(newCoffee);
         }
