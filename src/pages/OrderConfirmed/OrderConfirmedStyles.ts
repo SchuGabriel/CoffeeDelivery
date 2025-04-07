@@ -10,7 +10,7 @@ export const OrderContainer = styled.div`
   gap: 2.25rem;
   padding: 5rem 10rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 930px) {
     padding: 2rem;
   }
 `;
@@ -39,7 +39,7 @@ export const OrderDetails = styled.div`
   gap: 6.25rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1270px) {
     flex-wrap: wrap;
     gap: 3rem;
   }
@@ -67,7 +67,7 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1270px) {
     width: 100%;
   }
 `;

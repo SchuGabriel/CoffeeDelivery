@@ -20,7 +20,7 @@ export const HeroContainer = styled.div`
   padding: 5.75rem 10rem;
   gap: 3.5rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 930px) {
     flex-wrap: wrap;
     justify-content: center;
     padding: 2rem;
@@ -86,7 +86,7 @@ export const DifferentiatorsSection = styled.div`
   grid-row-gap: 1.25rem;
   grid-auto-flow: row;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1400px) {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -96,7 +96,7 @@ export const DifferentiatorsSection = styled.div`
 export const MenuSection = styled.div`
   padding: 2rem 10rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 930px) {
     padding: 2rem;
   }
 `;
