@@ -20,7 +20,7 @@ export const HeroContainer = styled.div`
   padding: 5.75rem 10rem;
   gap: 3.5rem;
 
-  @media (max-width: 930px) {
+  @media (max-width: 1200px) {
     flex-wrap: wrap;
     justify-content: center;
     padding: 2rem;
