@@ -2,6 +2,7 @@ import React, {
   ReactNode,
   createContext,
   useContext,
+  useEffect,
   useReducer,
   useState,
 } from "react";
@@ -48,7 +49,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     paymentMethod: "",
   });
 
-  const [cartData, dispatch] = useReducer(CartReducer, []);
+  const [cartData, dispatch] = useReducer(CartReducer, [], () => {
+    const storedStateJSON = localStorage.getItem(
+      "@coffe-delivery: cart-data-1.0.0"
+    );
+
+    if (storedStateJSON) return JSON.parse(storedStateJSON);
+  });
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartData);
+
+    localStorage.setItem("@coffe-delivery: cart-data-1.0.0", stateJSON);
+  }, [cartData]);
 
   return (
     <CartContext.Provider value={{ cartData, dispatch, formData, setFormData }}>
